@@ -1,0 +1,44 @@
+{% extends 'inicio/base.html' %}
+
+{% block content %}
+
+<section class="hero">
+
+    <h2>Bienestar para Adultos Mayores</h2>
+
+    <p>
+        La plataforma 60+ busca mejorar la calidad de vida
+        de las personas mayores mediante actividades físicas
+        y eventos comunitarios.
+    </p>
+
+    <a href="{% url 'eventos' %}" class="btn">Ver eventos</a>
+</section>
+
+
+<section class="info">
+
+    <h2>¿Qué ofrecemos?</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Entrenamiento físico</h3>
+            <p>Programas de ejercicio adaptados para adultos mayores.</p>
+        </div>
+
+        <div class="card">
+            <h3>Eventos comunitarios</h3>
+            <p>Actividades gratuitas para promover la convivencia.</p>
+        </div>
+
+        <div class="card">
+            <h3>Bienestar integral</h3>
+            <p>Actividades para mejorar la salud física y mental.</p>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

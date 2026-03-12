@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>60+ Bienestar</title>
+
+    <link rel="stylesheet" href="{% static 'inicio/css/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <h1 class="logo">60+</h1>
+
+    <ul class="menu">
+        <li><a href="{% url 'inicio' %}">Inicio</a></li>
+        <li><a href="{% url 'servicios' %}">Servicios</a></li>
+        <li><a href="{% url 'eventos' %}">Eventos</a></li>
+    </ul>
+
+</nav>
+
+
+<main>
+
+{% block content %}
+
+{% endblock %}
+
+</main>
+
+
+<footer>
+<p>© Plataforma 60+ Bienestar</p>
+</footer>
+
+</body>
+</html>

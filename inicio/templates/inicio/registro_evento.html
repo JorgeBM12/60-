@@ -1,0 +1,33 @@
+{% extends 'inicio/base.html' %}
+
+{% block content %}
+
+<h2>Registro a evento</h2>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" required>
+
+    <label>Edad</label>
+    <input type="number" name="edad" required>
+
+    <label>Correo</label>
+    <input type="email" name="correo" required>
+
+    <label>Teléfono</label>
+    <input type="text" name="telefono" required>
+
+    <label>Ciudad</label>
+    <input type="text" name="ciudad">
+
+    <label>Estado</label>
+    <input type="text" name="estado">
+
+    <button type="submit">Registrarse</button>
+
+</form>
+
+{% endblock %}

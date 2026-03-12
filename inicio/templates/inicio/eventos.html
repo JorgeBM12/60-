@@ -1,0 +1,33 @@
+{% extends 'inicio/base.html' %}
+
+{% block content %}
+
+<h2>Eventos disponibles</h2>
+
+<div class="eventos">
+
+    {% for evento in eventos %}
+
+    <div class="evento">
+
+        <h3>{{ evento.nombre }}</h3>
+
+        <p>{{ evento.descripcion }}</p>
+
+        <p>Fecha: {{ evento.fecha }}</p>
+
+        <p>Lugar: {{ evento.lugar }}</p>
+
+        <a href="{% url 'registro' %}" class="btn">Registrarse</a>
+
+    </div>
+
+    {% empty %}
+
+    <p>No hay eventos disponibles.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
