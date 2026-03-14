@@ -7,21 +7,48 @@
     <title>60+ Bienestar</title>
 
     <link rel="stylesheet" href="{% static 'inicio/css/style.css' %}">
+    {% block extra_css %}{% endblock %}
 </head>
 
 <body>
 
 <nav class="navbar">
 
-    <h1 class="logo">60+</h1>
+    <div class="logo">60+</div>
 
     <ul class="menu">
         <li><a href="{% url 'inicio' %}">Inicio</a></li>
         <li><a href="{% url 'servicios' %}">Servicios</a></li>
         <li><a href="{% url 'eventos' %}">Eventos</a></li>
+
+        {% if user.is_authenticated %}
+        <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}" style="display:none;">
+                {% csrf_token %}
+            </form>
+        
+            <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">
+                Cerrar sesión
+            </a>
+        </li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+        {% endif %}
     </ul>
 
 </nav>
+
+{% if messages %}
+
+<div class="messages">
+
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+
+</div>
+
+{% endif %}
 
 
 <main>
@@ -33,7 +60,7 @@
 </main>
 
 
-<footer>
+<footer class="footer">
 <p>© Plataforma 60+ Bienestar</p>
 </footer>
 

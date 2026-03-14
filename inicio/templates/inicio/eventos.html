@@ -1,33 +1,101 @@
-{% extends 'inicio/base.html' %}
+{% extends "inicio/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'inicio/css/eventos.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h2>Eventos disponibles</h2>
+<div class="eventos-dashboard">
 
-<div class="eventos">
+    <div class="eventos-header">
 
-    {% for evento in eventos %}
+        <h2>Eventos</h2>
 
-    <div class="evento">
-
-        <h3>{{ evento.nombre }}</h3>
-
-        <p>{{ evento.descripcion }}</p>
-
-        <p>Fecha: {{ evento.fecha }}</p>
-
-        <p>Lugar: {{ evento.lugar }}</p>
-
-        <a href="{% url 'registro' %}" class="btn">Registrarse</a>
+        {% if user.is_staff %}
+        <a href="#" class="btn-crear">+ Crear Evento</a>
+        {% endif %}
 
     </div>
 
-    {% empty %}
 
-    <p>No hay eventos disponibles.</p>
+    <table class="eventos-tabla">
 
-    {% endfor %}
+        <thead>
+
+            <tr>
+
+                <th>Evento</th>
+                <th>Fecha</th>
+                <th>Lugar</th>
+
+                {% if user.is_staff %}
+                <th>Cupo</th>
+                <th>Inscritos</th>
+                <th>Acciones</th>
+                {% else %}
+                <th></th>
+                {% endif %}
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for evento in eventos %}
+
+            <tr class="fila-evento" data-url="{% url 'detalle_evento' evento.id %}">
+
+                <td>{{ evento.nombre }}</td>
+                <td>{{ evento.fecha }}</td>
+                <td>{{ evento.lugar }}</td>
+
+                {% if user.is_staff %}
+
+                <td>{{ evento.cupo }}</td>
+                <td>{{ evento.inscritos }}</td>
+
+                <td>
+
+                    <a href="#" class="btn-editar">Editar</a>
+                    <a href="#" class="btn-eliminar">Eliminar</a>
+
+                </td>
+
+                {% else %}
+
+                <td>
+                    <a href="#" class="btn-registro">Registrarse</a>
+                </td>
+
+                {% endif %}
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="6">No hay eventos disponibles</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
 
 </div>
+
+<script>
+
+    document.querySelectorAll(".fila-evento").forEach(fila => {
+        fila.addEventListener("click", () => {
+            window.location = fila.dataset.url
+        })
+    })
+</script>
 
 {% endblock %}

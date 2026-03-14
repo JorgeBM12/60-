@@ -1,0 +1,57 @@
+{% extends "inicio/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'inicio/css/detalle_evento.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="evento-detalle-container">
+
+<div class="evento-card">
+
+<h1>{{ evento.nombre }}</h1>
+
+<p class="evento-descripcion">
+{{ evento.descripcion }}
+</p>
+
+<div class="evento-info">
+
+<div class="info-item">
+<span class="label">📅 Fecha</span>
+<p>{{ evento.fecha }}</p>
+</div>
+
+<div class="info-item">
+<span class="label">📍 Lugar</span>
+<p>{{ evento.lugar }}</p>
+</div>
+
+<div class="info-item">
+<span class="label">👥 Inscritos</span>
+<p>{{ evento.inscritos }} / {{ evento.cupo }}</p>
+</div>
+
+</div>
+
+{% if user.is_authenticated %}
+
+<a href="#" class="btn-inscribirse">
+Inscribirse al evento
+</a>
+
+{% else %}
+
+<p class="login-warning">
+Debes iniciar sesión para registrarte.
+</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

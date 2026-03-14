@@ -1,0 +1,111 @@
+.eventos-dashboard{
+max-width:1100px;
+margin:auto;
+padding:60px 20px;
+}
+
+
+/* HEADER */
+
+.eventos-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.eventos-header h2{
+margin:0;
+}
+
+
+/* BOTON CREAR */
+
+.btn-crear{
+background:#2c6e49;
+color:white;
+padding:10px 18px;
+border-radius:6px;
+text-decoration:none;
+font-size:14px;
+font-weight:500;
+}
+
+.btn-crear:hover{
+background:#1b4332;
+}
+
+
+/* TABLA */
+
+.eventos-tabla{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.eventos-tabla thead{
+background:#2c6e49;
+color:white;
+}
+
+.eventos-tabla th{
+padding:16px;
+text-align:left;
+font-weight:500;
+}
+
+.eventos-tabla td{
+padding:16px;
+border-bottom:1px solid #eee;
+}
+
+.eventos-tabla tbody tr:hover{
+background:#f5f8f685;
+cursor:pointer;
+}
+
+/* BOTONES */
+
+.btn-editar{
+background:#3a86ff;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+text-decoration:none;
+font-size:13px;
+margin-right:6px;
+}
+
+.btn-editar:hover{
+background:#265df2;
+}
+
+.btn-eliminar{
+background:#e63946;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+text-decoration:none;
+font-size:13px;
+}
+
+.btn-eliminar:hover{
+background:#c1121f;
+}
+
+.btn-registro{
+background:#2c6e49;
+color:white;
+padding:8px 16px;
+border-radius:6px;
+text-decoration:none;
+font-size:14px;
+}
+
+.btn-registro:hover{
+background:#1b4332;
+}

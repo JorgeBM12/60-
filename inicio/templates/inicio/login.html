@@ -1,0 +1,45 @@
+{% extends "inicio/base_auth.html" %}
+
+{% block content %}
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+        <div class="login-logo">
+            <h1>60+</h1>
+            <p>Bienestar</p>
+        </div>
+
+        <h2>Iniciar sesión</h2>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="input-icon">
+                <span>👤</span>
+                {{ form.username }}
+            </div>
+
+            <div class="input-icon">
+                <span>🔒</span>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="login-btn">
+                Entrar
+            </button>
+
+        </form>
+
+        {% if form.errors %}
+        <p class="login-error">
+            Usuario o contraseña incorrectos
+        </p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
