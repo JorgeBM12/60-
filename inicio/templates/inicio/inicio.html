@@ -1,96 +1,74 @@
 {% extends 'inicio/base.html' %}
-
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'inicio/css/inicio.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'inicio/css/inicio.css' %}?v=3">
 {% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Inicio | 60+</title>
-
-    <link rel="stylesheet" href="{% static 'inicio/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'inicio/css/inicio.css' %}">
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-</head>
-
-<body>
 
 <!-- HERO -->
-<div class="hero">
+<section class="hero">
     <div class="hero-content">
         <div class="hero-badge">Programa especializado para adultos mayores</div>
+
         <h1>Bienvenido a<br><em>60+</em></h1>
+
         <p>
-            Entrenamiento físico especializado para adultos mayores.
-            Mejora tu calidad de vida con clases adaptadas y una comunidad que te apoya.
+            Entrenamiento físico especializado para adultos mayores. Mejora tu calidad de vida con clases adaptadas.
         </p>
 
         <div class="hero-buttons">
-            <a class="btn btn-white" href="{% url 'servicios' %}">Nuestros Servicios</a>
-            <a class="btn btn-outline-white" href="{% url 'eventos' %}">Eventos Gratuitos</a>
+            <a href="{% url 'servicios' %}" class="btn btn-white">Nuestros Servicios</a>
+            <a href="{% url 'eventos' %}" class="btn btn-outline">Eventos</a>
         </div>
     </div>
-</div>
+
+    <div class="hero-image">
+        <div class="hero-img">
+            🧘‍♂️
+        </div>
+    </div>
+</section>
 
 <!-- EVENTOS -->
-<div class="section">
+<section class="section">
     <div class="section-header">
         <div>
-            <div class="section-title">Próximos <span>Eventos</span></div>
-            <div class="section-subtitle">Actividades gratuitas diseñadas para ti</div>
+            <h2>Próximos <span>Eventos</span></h2>
+            <p>Actividades gratuitas diseñadas para ti</p>
         </div>
-        <a class="btn btn-blue" href="{% url 'eventos' %}">Ver todos →</a>
+
+        <a href="{% url 'eventos' %}" class="btn btn-blue">
+            Ver todos →
+        </a>
     </div>
 
-    <div class="cards-grid">
-
+    <div class="cards">
         {% for evento in eventos %}
-        <div class="event-card">
-
-            <div class="card-img">
-                📅
-                <span class="card-badge">Gratuito</span>
-            </div>
+        <div class="card">
+            <div class="card-img">🎯</div>
 
             <div class="card-body">
-                <div class="card-date">
-                    {{ evento.fecha }}
-                </div>
+                <span class="date">📅 {{ evento.fecha }}</span>
 
-                <div class="card-title">
-                    {{ evento.nombre }}
-                </div>
+                <h3>{{ evento.nombre }}</h3>
 
-                <div class="card-desc">
-                    {{ evento.descripcion|truncatewords:12 }}
-                </div>
+                <p>{{ evento.descripcion|truncatechars:100 }}</p>
 
                 <div class="card-footer">
-                    <span class="card-meta">
-                        📍 {{ evento.lugar }}
-                    </span>
+                    <span>📍 {{ evento.lugar }}</span>
 
-                    <a class="btn btn-green-outline"
-                       href="{% url 'detalle_evento' evento.id %}">
-                        Ver Detalle
+                    <a href="{% url 'detalle_evento' evento.id %}" class="btn btn-small">
+                        Ver
                     </a>
                 </div>
             </div>
-
         </div>
         {% empty %}
         <p>No hay eventos disponibles</p>
         {% endfor %}
-
     </div>
-</div>
+</section>
 
-</body>
-</html>
 {% endblock %}

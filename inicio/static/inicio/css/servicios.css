@@ -1,0 +1,52 @@
+/* CONTENEDOR GENERAL */
+main {
+    background: #F5F7FA;
+    min-height: 100vh;
+    padding: 60px;
+}
+
+/* TÍTULO */
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #2E86AB;
+}
+
+/* GRID DE SERVICIOS */
+.servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #E2E8F0;
+}
+
+/* HOVER */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}
+
+/* TITULO CARD */
+.card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+/* TEXTO */
+.card p {
+    font-size: 14px;
+    color: #6B7280;
+    line-height: 1.6;
+}

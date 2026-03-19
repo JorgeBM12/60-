@@ -13,5 +13,6 @@ path('evento/editar/<int:id>/', views.editar_evento, name='editar_evento'),
 path('evento/eliminar/<int:id>/', views.eliminar_evento, name='eliminar_evento'),
 path('acceso-requerido/', views.acceso_requerido, name='acceso_requerido'),
 path('evento/<int:id>/', views.detalle_evento, name='detalle_evento'),
+path('inscribirse/<int:id>/', views.registro, name='inscribirse'),
 
 ]

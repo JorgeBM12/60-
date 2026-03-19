@@ -3,7 +3,7 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#4caf50,#035a07);
+background:linear-gradient(135deg,#2E86AB,#04577a);
 }
 
 .login-card{
@@ -19,7 +19,7 @@ animation:fadeIn .5s ease;
 .login-logo h1{
 font-size:50px;
 margin:0;
-color:#2e7d32;
+color:#2E86AB;
 }
 
 .login-logo p{
@@ -54,14 +54,14 @@ width:100%;
 padding:12px;
 border:none;
 border-radius:6px;
-background:#2e7d32;
+background:#2E86AB;
 color:white;
 font-size:15px;
 cursor:pointer;
 }
 
 .login-btn:hover{
-background:#1b5e20;
+background:#096186;
 }
 
 @keyframes fadeIn{

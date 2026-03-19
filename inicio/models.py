@@ -33,14 +33,14 @@ class Evento(models.Model):
 
 
 class Inscripcion(models.Model):
-    nombre = models.CharField(max_length=200)
-    edad = models.IntegerField()
-    correo = models.EmailField()
-    telefono = models.CharField(max_length=20)
+    nombre = models.CharField(max_length=200, null=True, blank=True)
+    edad = models.IntegerField(null=True, blank=True)
+    correo = models.EmailField(null=True, blank=True)
+    telefono = models.CharField(max_length=20, null=True, blank=True)
+    ciudad = models.CharField(max_length=100, null=True, blank=True)
+    estado = models.CharField(max_length=100, null=True, blank=True)
 
-    ciudad = models.CharField(max_length=100)
-    estado = models.CharField(max_length=100)
-
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
 
     def __str__(self):

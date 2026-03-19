@@ -31,8 +31,30 @@ def eventos(request):
     })
 
 
-def registro(request):
-    return render(request, 'inicio/registro_evento.html')
+@login_required
+def registro(request, id):
+    evento = get_object_or_404(Evento, id=id)
+
+    # Verificar si ya está inscrito
+    ya_inscrito = Inscripcion.objects.filter(
+        usuario=request.user,
+        evento=evento
+    ).exists()
+
+    if request.method == 'POST':
+        if not ya_inscrito:
+            Inscripcion.objects.create(
+                usuario=request.user,
+                evento=evento,
+                nombre=request.user.username,
+            )
+            messages.success(request, "Te has inscrito con éxito")
+            return redirect('eventos')
+
+    return render(request, 'inicio/registro_evento.html', {
+        'evento': evento,
+        'ya_inscrito': ya_inscrito
+    })
 
 
 @login_required
@@ -135,40 +157,3 @@ def detalle_evento(request, id):
         "porcentaje": porcentaje,
         "cupo_disponible": total_inscritos < evento.cupo_maximo
     })
-
-
-def inscribirse(request, id):
-
-    evento = get_object_or_404(Evento, id=id)
-
-    # CONTROL DE CUPO
-    inscritos = Inscripcion.objects.filter(evento=evento).count()
-
-    if inscritos >= evento.cupo_maximo:
-        messages.error(request, "El evento ya está lleno")
-        return redirect('eventos')
-
-    if request.method == 'POST':
-
-        nombre = request.POST.get('nombre')
-        correo = request.POST.get('correo')
-
-        # VALIDACIÓN
-        if not nombre or not correo:
-            messages.error(request, "Faltan campos obligatorios")
-            return redirect('inscribirse', id=id)
-
-        Inscripcion.objects.create(
-            nombre=nombre,
-            edad=request.POST.get('edad'),
-            correo=correo,
-            telefono=request.POST.get('telefono'),
-            ciudad=request.POST.get('ciudad'),
-            estado=request.POST.get('estado'),
-            evento=evento
-        )
-
-        messages.success(request, "Inscripción exitosa")
-        return redirect('eventos')
-
-    return render(request, 'inicio/inscripcion.html', {'evento': evento})

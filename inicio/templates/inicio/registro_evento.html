@@ -2,32 +2,48 @@
 
 {% block content %}
 
-<h2>Registro a evento</h2>
+<div class="container" style="padding:40px; max-width:700px; margin:auto;">
 
-<form method="POST">
+    <h2>Confirmar Inscripción</h2>
 
-    {% csrf_token %}
+    <div style="background:white; padding:30px; border-radius:12px; margin-top:20px; box-shadow:0 4px 20px rgba(0,0,0,0.08);">
 
-    <label>Nombre</label>
-    <input type="text" name="nombre" required>
+        <h3>{{ evento.nombre }}</h3>
 
-    <label>Edad</label>
-    <input type="number" name="edad" required>
+        <p><strong>Fecha:</strong> {{ evento.fecha }}</p>
+        <p><strong>Cupo máximo:</strong> {{ evento.cupo_maximo }}</p>
 
-    <label>Correo</label>
-    <input type="email" name="correo" required>
+        <hr style="margin:20px 0;">
 
-    <label>Teléfono</label>
-    <input type="text" name="telefono" required>
+        {% if ya_inscrito %}
+            <p style="color:green; font-weight:bold;">
+                ✔ Ya estás inscrito en este evento
+            </p>
 
-    <label>Ciudad</label>
-    <input type="text" name="ciudad">
+            <a href="{% url 'eventos' %}" class="btn">Volver</a>
 
-    <label>Estado</label>
-    <input type="text" name="estado">
+        {% else %}
 
-    <button type="submit">Registrarse</button>
+            <p>¿Deseas inscribirte a este evento?</p>
 
-</form>
+            <form method="POST">
+                {% csrf_token %}
+
+                <button type="submit" class="btn btn-green">
+                    Confirmar inscripción
+                </button>
+            </form>
+
+            <br>
+
+            <a href="{% url 'eventos' %}" class="btn">
+                Cancelar
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
 
 {% endblock %}
