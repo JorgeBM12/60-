@@ -1,44 +1,96 @@
 {% extends 'inicio/base.html' %}
 
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'inicio/css/inicio.css' %}?v=2">
+{% endblock %}
+
 {% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio | 60+</title>
 
-<section class="hero">
+    <link rel="stylesheet" href="{% static 'inicio/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'inicio/css/inicio.css' %}">
 
-    <h2>Bienestar para Adultos Mayores</h2>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
 
-    <p>
-        La plataforma 60+ busca mejorar la calidad de vida
-        de las personas mayores mediante actividades físicas
-        y eventos comunitarios.
-    </p>
+<body>
 
-    <a href="{% url 'eventos' %}" class="btn">Ver eventos</a>
-</section>
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">Programa especializado para adultos mayores</div>
+        <h1>Bienvenido a<br><em>60+</em></h1>
+        <p>
+            Entrenamiento físico especializado para adultos mayores.
+            Mejora tu calidad de vida con clases adaptadas y una comunidad que te apoya.
+        </p>
 
-
-<section class="info">
-
-    <h2>¿Qué ofrecemos?</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>Entrenamiento físico</h3>
-            <p>Programas de ejercicio adaptados para adultos mayores.</p>
+        <div class="hero-buttons">
+            <a class="btn btn-white" href="{% url 'servicios' %}">Nuestros Servicios</a>
+            <a class="btn btn-outline-white" href="{% url 'eventos' %}">Eventos Gratuitos</a>
         </div>
+    </div>
+</div>
 
-        <div class="card">
-            <h3>Eventos comunitarios</h3>
-            <p>Actividades gratuitas para promover la convivencia.</p>
+<!-- EVENTOS -->
+<div class="section">
+    <div class="section-header">
+        <div>
+            <div class="section-title">Próximos <span>Eventos</span></div>
+            <div class="section-subtitle">Actividades gratuitas diseñadas para ti</div>
         </div>
-
-        <div class="card">
-            <h3>Bienestar integral</h3>
-            <p>Actividades para mejorar la salud física y mental.</p>
-        </div>
-
+        <a class="btn btn-blue" href="{% url 'eventos' %}">Ver todos →</a>
     </div>
 
-</section>
+    <div class="cards-grid">
 
+        {% for evento in eventos %}
+        <div class="event-card">
+
+            <div class="card-img">
+                📅
+                <span class="card-badge">Gratuito</span>
+            </div>
+
+            <div class="card-body">
+                <div class="card-date">
+                    {{ evento.fecha }}
+                </div>
+
+                <div class="card-title">
+                    {{ evento.nombre }}
+                </div>
+
+                <div class="card-desc">
+                    {{ evento.descripcion|truncatewords:12 }}
+                </div>
+
+                <div class="card-footer">
+                    <span class="card-meta">
+                        📍 {{ evento.lugar }}
+                    </span>
+
+                    <a class="btn btn-green-outline"
+                       href="{% url 'detalle_evento' evento.id %}">
+                        Ver Detalle
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        {% empty %}
+        <p>No hay eventos disponibles</p>
+        {% endfor %}
+
+    </div>
+</div>
+
+</body>
+</html>
 {% endblock %}

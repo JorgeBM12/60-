@@ -1,4 +1,4 @@
-{% extends "inicio/base.html" %}
+{% extends 'inicio/base.html' %}
 {% load static %}
 
 {% block extra_css %}
@@ -7,95 +7,75 @@
 
 {% block content %}
 
-<div class="eventos-dashboard">
+<!-- HEADER -->
+<div class="page-header">
+    <h1>Eventos Gratuitos</h1>
+    <p>Actividades diseñadas para adultos mayores</p>
+</div>
 
-    <div class="eventos-header">
+<div class="section">
 
-        <h2>Eventos</h2>
+    <div class="subsection-title">
+        Próximos Eventos
+    </div>
 
-        {% if user.is_staff %}
-        <a href="#" class="btn-crear">+ Crear Evento</a>
-        {% endif %}
+    <div class="cards-grid">
+
+        {% for evento in eventos %}
+        <div class="event-card">
+
+            <div class="card-img">
+                📅
+                <span class="card-badge">Gratuito</span>
+            </div>
+
+            <div class="card-body">
+
+                <div class="card-date">
+                    {{ evento.fecha }}
+                </div>
+
+                <div class="card-title">
+                    {{ evento.nombre }}
+                </div>
+
+                <div class="card-desc">
+                    {{ evento.descripcion|truncatewords:15 }}
+                </div>
+
+                <!-- CUP0 -->
+                <div class="card-meta">
+                    👥 {{ evento.inscritos }} / {{ evento.cupo_maximo }}
+                </div>
+
+                <div class="card-footer">
+
+                    <span class="card-meta">
+                        📍 {{ evento.lugar }}
+                    </span>
+
+                    {% if evento.inscritos >= evento.cupo_maximo %}
+                        <span class="tag lleno">Lleno</span>
+                    {% else %}
+                        <span class="tag disponible">Disponible</span>
+                    {% endif %}
+
+                </div>
+
+                <a class="btn btn-green"
+                   href="{% url 'detalle_evento' evento.id %}">
+                   Ver detalle
+                </a>
+
+            </div>
+
+        </div>
+        {% empty %}
+        <p>No hay eventos disponibles</p>
+        {% endfor %}
 
     </div>
 
-
-    <table class="eventos-tabla">
-
-        <thead>
-
-            <tr>
-
-                <th>Evento</th>
-                <th>Fecha</th>
-                <th>Lugar</th>
-
-                {% if user.is_staff %}
-                <th>Cupo</th>
-                <th>Inscritos</th>
-                <th>Acciones</th>
-                {% else %}
-                <th></th>
-                {% endif %}
-
-            </tr>
-
-        </thead>
-
-
-        <tbody>
-
-            {% for evento in eventos %}
-
-            <tr class="fila-evento" data-url="{% url 'detalle_evento' evento.id %}">
-
-                <td>{{ evento.nombre }}</td>
-                <td>{{ evento.fecha }}</td>
-                <td>{{ evento.lugar }}</td>
-
-                {% if user.is_staff %}
-
-                <td>{{ evento.cupo }}</td>
-                <td>{{ evento.inscritos }}</td>
-
-                <td>
-
-                    <a href="#" class="btn-editar">Editar</a>
-                    <a href="#" class="btn-eliminar">Eliminar</a>
-
-                </td>
-
-                {% else %}
-
-                <td>
-                    <a href="#" class="btn-registro">Registrarse</a>
-                </td>
-
-                {% endif %}
-
-            </tr>
-
-            {% empty %}
-
-            <tr>
-                <td colspan="6">No hay eventos disponibles</td>
-            </tr>
-
-            {% endfor %}
-
-        </tbody>
-
-    </table>
-
 </div>
-
-<script>
-
-    document.querySelectorAll(".fila-evento").forEach(fila => {
-        fila.addEventListener("click", () => {
-            window.location = fila.dataset.url
-        })
-    })
-</script>
 
 {% endblock %}

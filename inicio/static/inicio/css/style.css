@@ -25,30 +25,69 @@ min-height:100vh;
 /* =========================
    NAVBAR
 ========================= */
-
-.navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-background:#2c6e49;
-padding:16px 40px;
-
-color:white;
-
-box-shadow:0 4px 15px rgba(0,0,0,0.08);
-
-position:sticky;
-top:0;
-z-index:100;
+.nav {
+    background: white;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.logo{
-font-size:20px;
-font-weight:600;
-letter-spacing:.5px;
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 40px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
+/* LOGO */
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #2E86AB;
+}
+
+.logo span {
+    color: #4CAF50;
+}
+
+/* LINKS */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #6B7280;
+    font-weight: 500;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #2E86AB;
+}
+
+/* BOTÓN */
+.btn-nav {
+    background: #2E86AB;
+    color: white !important;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-nav:hover {
+    background: #1d6b8c;
+}
 
 /* =========================
    MENU
@@ -219,7 +258,7 @@ color:#666;
 
 .footer{
 
-background:#2c6e49;
+background:#2E86AB;
 color:white;
 
 text-align:center;

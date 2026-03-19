@@ -1,4 +1,4 @@
-{% extends "inicio/base.html" %}
+{% extends 'inicio/base.html' %}
 {% load static %}
 
 {% block extra_css %}
@@ -7,50 +7,84 @@
 
 {% block content %}
 
-<div class="evento-detalle-container">
+<div class="detail-container">
 
-<div class="evento-card">
+    <!-- TÍTULO -->
+    <h1 class="detail-title">{{ evento.nombre }}</h1>
 
-<h1>{{ evento.nombre }}</h1>
+    <!-- IMAGEN / HEADER -->
+    <div class="detail-img">
+        🎯
+    </div>
 
-<p class="evento-descripcion">
-{{ evento.descripcion }}
-</p>
+    <div class="detail-grid">
 
-<div class="evento-info">
+        <!-- INFO PRINCIPAL -->
+        <div class="detail-main">
 
-<div class="info-item">
-<span class="label">📅 Fecha</span>
-<p>{{ evento.fecha }}</p>
-</div>
+            <h3>Descripción</h3>
+            <p>{{ evento.descripcion }}</p>
 
-<div class="info-item">
-<span class="label">📍 Lugar</span>
-<p>{{ evento.lugar }}</p>
-</div>
+            <!-- TABLA INSCRITOS -->
+            <div class="table-container">
+                <h3>Inscritos ({{ total_inscritos }} / {{ evento.cupo_maximo }})</h3>
 
-<div class="info-item">
-<span class="label">👥 Inscritos</span>
-<p>{{ evento.inscritos }} / {{ evento.cupo }}</p>
-</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th>Ciudad</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ins in inscritos %}
+                        <tr>
+                            <td>{{ ins.nombre }}</td>
+                            <td>{{ ins.edad }}</td>
+                            <td>{{ ins.ciudad }}</td>
+                            <td>Confirmado</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4">No hay inscritos aún</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-</div>
+        </div>
 
-{% if user.is_authenticated %}
+        <!-- SIDEBAR -->
+        <div class="detail-sidebar">
 
-<a href="#" class="btn-inscribirse">
-Inscribirse al evento
-</a>
+            <div class="card">
 
-{% else %}
+                <p><strong>📅 Fecha:</strong> {{ evento.fecha }}</p>
+                <p><strong>📍 Lugar:</strong> {{ evento.lugar }}</p>
 
-<p class="login-warning">
-Debes iniciar sesión para registrarte.
-</p>
+                <p><strong>👥 Cupo:</strong> {{ total_inscritos }} / {{ evento.cupo_maximo }}</p>
 
-{% endif %}
+                <!-- BARRA -->
+                <div class="cupo-bar">
+                    <div class="cupo-fill" data-width="{{ porcentaje }}"></div>
+                </div>
 
-</div>
+                {% if cupo_disponible %}
+                <a href="{% url 'inscribirse' evento.id %}" class="btn-inscribirse">
+                    Inscribirme
+                </a>
+                {% else %}
+                <p class="cupo-lleno">Evento lleno</p>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 

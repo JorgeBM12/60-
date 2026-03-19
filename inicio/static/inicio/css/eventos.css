@@ -1,111 +1,122 @@
-.eventos-dashboard{
-max-width:1100px;
-margin:auto;
-padding:60px 20px;
-}
-
-
 /* HEADER */
-
-.eventos-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:30px;
+.page-header {
+    background: #2E86AB;
+    color: white;
+    padding: 40px;
 }
 
-.eventos-header h2{
-margin:0;
+.page-header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
 }
 
-
-/* BOTON CREAR */
-
-.btn-crear{
-background:#2c6e49;
-color:white;
-padding:10px 18px;
-border-radius:6px;
-text-decoration:none;
-font-size:14px;
-font-weight:500;
+/* SECTION */
+.section {
+    padding: 40px;
 }
 
-.btn-crear:hover{
-background:#1b4332;
+.subsection-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-
-/* TABLA */
-
-.eventos-tabla{
-width:100%;
-border-collapse:collapse;
-background:white;
-border-radius:10px;
-overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
+/* CARDS */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
 }
 
-.eventos-tabla thead{
-background:#2c6e49;
-color:white;
+.event-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.eventos-tabla th{
-padding:16px;
-text-align:left;
-font-weight:500;
+.card-img {
+    height: 120px;
+    background: #e8f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    position: relative;
 }
 
-.eventos-tabla td{
-padding:16px;
-border-bottom:1px solid #eee;
+.card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #2E86AB;
+    color: white;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
 }
 
-.eventos-tabla tbody tr:hover{
-background:#f5f8f685;
-cursor:pointer;
+.card-body {
+    padding: 15px;
 }
 
-/* BOTONES */
-
-.btn-editar{
-background:#3a86ff;
-color:white;
-padding:6px 12px;
-border-radius:6px;
-text-decoration:none;
-font-size:13px;
-margin-right:6px;
+.card-date {
+    font-size: 12px;
+    color: #2E86AB;
 }
 
-.btn-editar:hover{
-background:#265df2;
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 8px 0;
 }
 
-.btn-eliminar{
-background:#e63946;
-color:white;
-padding:6px 12px;
-border-radius:6px;
-text-decoration:none;
-font-size:13px;
+.card-desc {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
 }
 
-.btn-eliminar:hover{
-background:#c1121f;
+.card-meta {
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 10px;
 }
 
-.btn-registro{
-background:#2c6e49;
-color:white;
-padding:8px 16px;
-border-radius:6px;
-text-decoration:none;
-font-size:14px;
+/* FOOTER */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.btn-registro:hover{
-background:#1b4332;
+/* TAGS */
+.tag {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.disponible {
+    background: #e8f5e9;
+    color: #388E3C;
+}
+
+.lleno {
+    background: #fdecea;
+    color: #E74C3C;
+}
+
+/* BOTON */
+.btn-green {
+    display: block;
+    text-align: center;
+    background: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
 }

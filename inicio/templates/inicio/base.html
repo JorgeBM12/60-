@@ -7,35 +7,43 @@
     <title>60+ Bienestar</title>
 
     <link rel="stylesheet" href="{% static 'inicio/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     {% block extra_css %}{% endblock %}
 </head>
 
 <body>
 
-<nav class="navbar">
+<nav class="nav">
+    <div class="nav-container">
 
-    <div class="logo">60+</div>
+        <div class="logo">
+            60<span>+</span>
+        </div>
 
-    <ul class="menu">
-        <li><a href="{% url 'inicio' %}">Inicio</a></li>
-        <li><a href="{% url 'servicios' %}">Servicios</a></li>
-        <li><a href="{% url 'eventos' %}">Eventos</a></li>
+        <ul class="nav-links">
+            <li><a href="{% url 'inicio' %}">Inicio</a></li>
+            <li><a href="{% url 'servicios' %}">Servicios</a></li>
+            <li><a href="{% url 'eventos' %}">Eventos</a></li>
 
-        {% if user.is_authenticated %}
-        <li>
-            <form id="logout-form" method="post" action="{% url 'logout' %}" style="display:none;">
-                {% csrf_token %}
-            </form>
-        
-            <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">
-                Cerrar sesión
-            </a>
-        </li>
-        {% else %}
-        <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
-        {% endif %}
-    </ul>
+            {% if user.is_authenticated %}
+            <li>
+                <form id="logout-form" method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                </form>
+                <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">
+                    Cerrar sesión
+                </a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'login' %}" class="btn-nav">
+                    Iniciar sesión
+                </a>
+            </li>
+            {% endif %}
+        </ul>
 
+    </div>
 </nav>
 
 {% if messages %}
